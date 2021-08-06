@@ -3,7 +3,6 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  // extends: ["plugin:react/recommended", "airbnb-typescript", "prettier"],
   extends: [
     "airbnb-typescript",
     "plugin:@typescript-eslint/recommended",
@@ -26,6 +25,9 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  // plugins: ["react", "@typescript-eslint", "prettier"],
+  ignorePatterns: ["src/react-app-env.d.ts"],
   plugins: ["@typescript-eslint", "prettier"],
+  rules: {
+    "prettier/prettier": ["error"],
+  },
 };
