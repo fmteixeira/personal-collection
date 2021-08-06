@@ -9,5 +9,11 @@
  */
 
 {
+    "button": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "src/components/button"
+    },
     "$schema-version": "14.9.0"
 }

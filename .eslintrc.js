@@ -11,7 +11,7 @@ module.exports = {
   ],
   overrides: [
     {
-      files: ["*.ts", "*.tsx"], // Your TypeScript files extension
+      files: ["*.ts", "*.tsx", "*.composition.tsx", "*.spec.tsx"], // Your TypeScript files extension
       parserOptions: {
         project: ["./tsconfig.eslint.json"], // Specify it only for TypeScript files
       },
@@ -29,5 +29,6 @@ module.exports = {
   plugins: ["@typescript-eslint", "prettier"],
   rules: {
     "prettier/prettier": ["error"],
+    "import/prefer-default-export": "off",
   },
 };
