@@ -34,12 +34,7 @@ module.exports = {
     "no-restricted-imports": [
       "error",
       {
-        patterns: [
-          {
-            group: ["**/*.module.css", "**/*.css", "**/*.scss"],
-            message: "Please apply css with tailwindcss.",
-          },
-        ],
+        patterns: ["**/*.module.css", "**/*.css", "**/*.scss"],
       },
     ],
   },

@@ -24,7 +24,7 @@
     ".git-blame-ignore-revs"
   ],
   "files.exclude": {
-    "**/.fttemplates": false
+    "**/.fttemplates": true
   },
   "svg.preview.background": "transparent"
 }
