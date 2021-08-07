@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "./logo.svg";
+// eslint-disable-next-line no-restricted-imports
 import "./App.css";
 
 function App(): JSX.Element {

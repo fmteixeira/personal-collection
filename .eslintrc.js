@@ -30,5 +30,17 @@ module.exports = {
   rules: {
     "prettier/prettier": ["error"],
     "import/prefer-default-export": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        patterns: [
+          {
+            group: ["**/*.module.css", "**/*.css", "**/*.scss"],
+            message: "Please apply css with tailwindcss.",
+          },
+        ],
+      },
+    ],
   },
 };
