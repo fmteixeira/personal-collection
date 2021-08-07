@@ -11,7 +11,9 @@ export interface Props {
 }
 
 const Button = ({ exampleProp }: Props): JSX.Element => (
-  <div>{exampleProp}</div>
+  <button type="button" className="bg-red-400 font-bold border-2">
+    {exampleProp}
+  </button>
 );
 
 export default Button;

@@ -23,7 +23,7 @@
     "test": "craco test",
     "lint": "eslint src",
     "lint-fix": "eslint src --quiet --fix",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "cross-env TAILWIND_MODE=watch start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
