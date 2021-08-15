@@ -1,23 +1,21 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react/types-6-0";
 // Component
-import Button, { Props } from "components/Button/Button";
+import Container, { Props } from "./Container";
 
 export default {
-  title: "Button",
-  component: Button,
+  title: "Container",
+  component: Container,
   decorators: [],
   argTypes: {},
 } as Meta;
 
 // Component Story
-const Template: Story<Props> = ({ exampleProp }: Props) => (
-  <Button exampleProp={exampleProp} />
-);
+const Template: Story<Props> = ({ name }: Props) => <Container name={name} />;
 
 // Component Props
 const props: Props = {
-  exampleProp: "Button",
+  name: "Container",
 };
 
 // Component Story Node

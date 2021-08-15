@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@typing/*": ["typing/*"],
+      "@components/*": ["components/*"]
+    }
+  },
+  "include": ["./**/*.ts", "./**/*.tsx"]
+}

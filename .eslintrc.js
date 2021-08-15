@@ -31,11 +31,19 @@ module.exports = {
   rules: {
     "prettier/prettier": ["error"],
     "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "no-restricted-imports": [
       "error",
       {
-        patterns: ["**/*.module.css", "**/*.css", "**/*.scss"],
+        patterns: [
+          "../",
+          "./",
+          "@/features/*/*",
+          "**/*.module.css",
+          "**/*.css",
+          "**/*.scss",
+        ],
       },
     ],
   },
