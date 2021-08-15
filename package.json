@@ -24,7 +24,8 @@
     "lint": "eslint src",
     "lint-fix": "eslint src --quiet --fix",
     "storybook": "cross-env TAILWIND_MODE=watch start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "plop": "plop"
   },
   "eslintConfig": {
     "extends": [
@@ -67,11 +68,13 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "plop": "^2.7.4",
     "postcss": "^7",
     "prettier": "^2.3.2",
     "storybook-dark-mode": "^1.0.8",

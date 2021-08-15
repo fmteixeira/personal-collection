@@ -7,6 +7,9 @@ module.exports = {
     "airbnb-typescript",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:import/errors", // temp
+    "plugin:import/warnings", // temp
+    "plugin:import/typescript", // temp
     "plugin:react-hooks/recommended",
     "prettier",
   ],
@@ -27,19 +30,48 @@ module.exports = {
     sourceType: "module",
   },
   ignorePatterns: ["src/react-app-env.d.ts"],
-  plugins: ["@typescript-eslint", "prettier"],
+  plugins: ["@typescript-eslint", "prettier", "import"],
+  settings: {
+    "import/resolver": {
+      typescript: {},
+    },
+  },
   rules: {
     "prettier/prettier": ["error"],
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/no-explicit-any": "error",
+    "react/prop-types": "off",
+    "import/no-internal-modules": [
+      "error",
+      {
+        allow: ["**/components/*", "source-map-support/*"],
+      },
+    ],
+    "import/order": [
+      "error",
+      {
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+        ],
+        "newlines-between": "always",
+        alphabetize: { order: "asc", caseInsensitive: true },
+      },
+    ],
     "no-restricted-imports": [
       "error",
       {
         patterns: [
-          "../",
-          "./",
-          "@features",
+          // "../",
+          // "./",
+          "@/features/*/*",
+          "@features/*/*",
           "**/*.module.css",
           "**/*.css",
           "**/*.scss",
