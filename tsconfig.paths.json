@@ -2,9 +2,11 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
+      "@components/*": ["components/*"],
       "@typing/*": ["typing/*"],
-      "@components/*": ["components/*"]
+      "@config/*": ["config/*"],
+      "@features/*": ["features/*"]
     }
-  },
-  "include": ["./**/*.ts", "./**/*.tsx"]
+  }
+  // "include": ["./**/*.ts", "./**/*.tsx"]
 }

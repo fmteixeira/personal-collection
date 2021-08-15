@@ -1,6 +1,7 @@
 import React from "react";
-import Button from "@components/Button/Button";
 import { Person } from "@typing/interfaces";
+import Button from "@components/Button/Button";
+import api from "@config/api.json";
 
 export interface Props {
   name: string;
@@ -11,9 +12,11 @@ const Container = ({ name }: Props): JSX.Element => {
     name,
   };
 
+  const { url } = api;
+
   return (
     <div>
-      <Button exampleProp={person.name} />
+      <Button exampleProp={person.name + url} />
     </div>
   );
 };

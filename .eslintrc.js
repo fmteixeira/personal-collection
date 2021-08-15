@@ -39,7 +39,7 @@ module.exports = {
         patterns: [
           "../",
           "./",
-          "@/features/*/*",
+          "@features",
           "**/*.module.css",
           "**/*.css",
           "**/*.scss",
