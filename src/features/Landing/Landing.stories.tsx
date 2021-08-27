@@ -2,7 +2,7 @@ import { Story, Meta } from "@storybook/react/types-6-0";
 import React from "react";
 // Component
 
-import Landing, { Props } from "./Landing";
+import { Landing } from "./Landing";
 
 export default {
   title: "Landing",
@@ -12,16 +12,10 @@ export default {
 } as Meta;
 
 // Component Story
-const Template: Story<Props> = ({ name }: Props) => <Landing name={name} />;
-
-// Component Props
-const props: Props = {
-  name: "Landing",
-};
+const Template: Story = () => <Landing />;
 
 // Component Story Node
 export const Default = Template.bind({});
-Default.args = props;
 Default.parameters = {
   design: {
     type: "figma",
