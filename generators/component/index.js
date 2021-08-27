@@ -1,32 +1,152 @@
-module.exports = {
-  description: "Component Generator",
-  prompts: [
-    {
-      type: "input",
-      name: "name",
-      message: "Component name:",
+const component = {
+  message: "Select an action: ",
+  options: {
+    createComponent: "Create new component",
+    createSubComponent: "Add subcomponent",
+  },
+};
+
+const selectFolder = {
+  message: "Select an option: ",
+  options: {
+    hasFolder: "Add to existing component folder",
+    newFolder: "Create new folder",
+  },
+};
+
+const selectMultipleFolder = {
+  message: "Select folder type: ",
+  options: {
+    singular: "This folder will contain only this component",
+    multiple: "This folder will contain multiple components",
+  },
+};
+
+module.exports = (plop) => {
+  plop.setGenerator("Component Generator", {
+    description: "Component Generator",
+    prompts: [
+      // Global
+      {
+        type: "input",
+        name: "componentName",
+        message: "Component name:",
+      },
+      {
+        type: "list",
+        name: "component",
+        message: component.message,
+        choices: [
+          component.options.createComponent,
+          component.options.createSubComponent,
+        ],
+      },
+      {
+        type: "confirm",
+        name: "storybook",
+        message: "Generate Storybook ?",
+      },
+      // New Component
+      {
+        when: (response) => {
+          return response.component === component.options.createComponent;
+        },
+        type: "list",
+        name: "selectFolder",
+        message: selectFolder.message,
+        choices: [
+          selectFolder.options.hasFolder,
+          selectFolder.options.newFolder,
+        ],
+      },
+      // New Component -> New Folder
+      {
+        when: (response) => {
+          return (
+            response.component === component.options.createComponent &&
+            response.selectFolder === selectFolder.options.newFolder
+          );
+        },
+        type: "list",
+        name: "selectMultipleFolder",
+        message: selectMultipleFolder.message,
+        choices: [
+          selectMultipleFolder.options.singular,
+          selectMultipleFolder.options.multiple,
+        ],
+      },
+      // New Component -> New Folder -> Multiple
+      {
+        when: (response) => {
+          return (
+            response.component === component.options.createComponent &&
+            response.selectMultipleFolder ===
+              selectMultipleFolder.options.multiple
+          );
+        },
+        type: "input",
+        name: "folderName",
+        message: "Folder name: ",
+      },
+      // New Subcomponent
+      {
+        when: (response) => {
+          return response.component === component.options.createSubComponent;
+        },
+        type: "confirm",
+        name: "local",
+        message: "Local subcomponent (no export) ?",
+      },
+      // New Component -> Has Folder || New Subcomponent
+      {
+        when: (response) => {
+          return (
+            (response.component === component.options.createComponent &&
+              response.selectFolder === selectFolder.options.hasFolder) ||
+            response.component === component.options.createSubComponent
+          );
+        },
+        type: "input",
+        name: "location",
+        message:
+          "Select folder in components (examples: 'TextInput', 'Inputs\\TextInput'): ",
+      },
+    ],
+    /**
+     * Data Params
+     * componentName: string (component name)
+     * component: component.options (new component / new subcomponent)
+     * storybook: boolean (generate storybook)
+     * selectFolder: selectFolder.options (has folder / create new folder)
+     * selectMultipleFolder: selectMultipleFolder.options (singular component folder / multiple component folder)
+     * folderName: string (folder name)
+     * location?: string (folder path)
+     */
+    actions: (data) => {
+      const actions = [];
+
+      // New Component
+      if (data.component === component.options.createComponent) {
+      }
+
+      // New SubComponent
+      if (data.component === component.options.createSubComponent) {
+      }
+
+      // Global
+      if (data.storybook) {
+        // TODO: Add all this logic
+        actions.push({
+          type: "add",
+          // path: "src/components/{{folder}}/{{properCase name}}/{{properCase name}}.stories.tsx",
+          path: `src/components/${
+            location ? location + "/" : ""
+          }{{properCase name}}/{{properCase name}}.stories.tsx`,
+          templateFile: "generators/component/Component.stories.tsx.hbs",
+        });
+      }
+
+      return actions;
     },
-    {
-      type: "input",
-      name: "folder",
-      message: "Folder name in components (optional): ",
-    },
-  ],
-  actions: [
-    {
-      type: "add",
-      path: "src/components/{{folder}}/{{properCase name}}/index.ts",
-      templateFile: "generators/component/index.ts.hbs",
-    },
-    {
-      type: "add",
-      path: "src/components/{{folder}}/{{properCase name}}/{{properCase name}}.tsx",
-      templateFile: "generators/component/Component.tsx.hbs",
-    },
-    {
-      type: "add",
-      path: "src/components/{{folder}}/{{properCase name}}/{{properCase name}}.stories.tsx",
-      templateFile: "generators/component/Component.stories.tsx.hbs",
-    },
-  ],
+  });
 };

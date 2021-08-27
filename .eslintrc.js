@@ -29,7 +29,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  ignorePatterns: ["src/react-app-env.d.ts"],
+  ignorePatterns: ["src/react-app-env.d.ts", "generators/**/index.ts"],
   plugins: ["@typescript-eslint", "prettier", "import"],
   settings: {
     "import/resolver": {
@@ -42,12 +42,6 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "react/prop-types": "off",
-    "import/no-internal-modules": [
-      "error",
-      {
-        allow: ["**/components/*", "source-map-support/*"],
-      },
-    ],
     "import/order": [
       "error",
       {
@@ -64,14 +58,21 @@ module.exports = {
         alphabetize: { order: "asc", caseInsensitive: true },
       },
     ],
+    "import/no-internal-modules": [
+      "error",
+      {
+        allow: [
+          "@/!(features)/*",
+          "**/node_modules/**/*",
+          "source-map-support/*",
+        ],
+      },
+    ],
     "no-restricted-imports": [
       "error",
       {
         patterns: [
-          // "../",
-          // "./",
-          "@/features/*/*",
-          "@features/*/*",
+          "@/features/**/*",
           "**/*.module.css",
           "**/*.css",
           "**/*.scss",

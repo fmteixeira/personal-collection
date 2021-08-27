@@ -1,5 +1,8 @@
-module.exports = function (plop) {
-  plop.setGenerator("test", {
+import { NodePlopAPI } from "plop";
+
+module.exports = (plop: NodePlopAPI) => {
+  // module.exports = (plop) => {
+  plop.setGenerator("Component Generator", {
     description: "Component Generator",
     prompts: [
       {
@@ -7,25 +10,30 @@ module.exports = function (plop) {
         name: "name",
         message: "Component name:",
       },
+      // {
+      //   type: "confirm",
+      //   name: "subcomponent",
+      //   message: "First component ?",
+      // },
+      // {
+      //   when: (response) => {
+      //     return response.subcomponent;
+      //   },
+      //   type: "input",
+      //   name: "folder",
+      //   message: "Folder name in components: ",
+      // },
       {
-        type: "confirm",
-        name: "subcomponent",
-        message: "Is this a subcomponent ?",
-      },
-      {
-        when: function (response) {
-          return response.subcomponent;
-        },
-        type: "input",
+        type: "path",
         name: "folder",
         message: "Folder name in components: ",
       },
     ],
-    actions: function (data) {
+    actions: (data) => {
       const actions = [
         {
           type: "add",
-          path: "src/components/{{folder}}/{{properCase name}}/index.ts",
+          path: "src/components/{{properCase name}}/{{properCase name}}/index.ts",
           templateFile: "generators/component/index.ts.hbs",
         },
       ];
