@@ -1,5 +1,6 @@
 const { newComponent } = require("./functions");
 const { component, selectFolder, selectMultipleFolder } = require("./options");
+const { validateName } = require("./validators");
 
 module.exports = (plop) => {
   plop.setGenerator("Component Generator", {
@@ -10,6 +11,7 @@ module.exports = (plop) => {
         type: "input",
         name: "componentName",
         message: "Component name:",
+        validate: (input) => validateName(input),
       },
       {
         type: "list",
@@ -66,6 +68,7 @@ module.exports = (plop) => {
         type: "input",
         name: "folderName",
         message: "Folder name: ",
+        validate: (input) => validateName(input),
       },
       // New Subcomponent
       {
@@ -89,6 +92,7 @@ module.exports = (plop) => {
         name: "folderName",
         message:
           "Select folder in components (examples: 'TextInput', 'Inputs\\TextInput'): ",
+        validate: (input) => validateName(input),
       },
     ],
     /**
