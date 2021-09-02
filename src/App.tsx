@@ -1,9 +1,8 @@
 import React from "react";
 
-/* eslint-disable no-restricted-imports */
 import { Landing } from "@/features/Landing";
-import "./App.css";
-/* eslint-enable no-restricted-imports */
+// eslint-disable-next-line no-restricted-imports
+import "./index.css";
 
 function App(): JSX.Element {
   return (

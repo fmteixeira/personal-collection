@@ -44,7 +44,6 @@ const newComponent = {
         type: "append",
         unique: true,
         path: `src/components/{{properCase folderName}}/index.ts`,
-        // pattern: /(\/\/ IMPORT MODULE FILES)/g,
         pattern: ";",
         template: 'export * from "./{{properCase componentName}}";',
       };
