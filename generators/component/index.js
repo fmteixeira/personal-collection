@@ -1,3 +1,5 @@
+const { newComponent } = require("./functions");
+
 const component = {
   message: "Select an action: ",
   options: {
@@ -135,39 +137,15 @@ module.exports = (plop) => {
 
           // Folder index
           if (!isSingular) {
-            actions.push({
-              type: "add",
-              path: `src/components/${
-                data.location ? data.location + "/" : ""
-              }{{properCase folderName}}/index.ts`,
-              templateFile: `generators/component/index.ts.hbs`,
-            });
+            actions.push(newComponent.generateFolderIndex(data));
           }
           // Component
-          actions.push({
-            type: "add",
-            path: `src/components/${
-              data.location ? data.location + "/" : ""
-            }${baseFolder}{{properCase componentName}}/{{properCase componentName}}.tsx`,
-            templateFile: "generators/component/Component.tsx.hbs",
-          });
+          actions.push(newComponent.generateComponent(data));
           // Component index
-          actions.push({
-            type: "add",
-            path: `src/components/${
-              data.location ? data.location + "/" : ""
-            }${baseFolder}{{properCase componentName}}/index.ts`,
-            templateFile: `generators/component/index.ts.hbs`,
-          });
+          actions.push(newComponent.generateComponentIndex(data));
           // Storybook
           if (data.storybook) {
-            actions.push({
-              type: "add",
-              path: `src/components/${
-                data.location ? data.location + "/" : ""
-              }${baseFolder}{{properCase componentName}}/{{properCase componentName}}.stories.tsx`,
-              templateFile: "generators/component/Component.stories.tsx.hbs",
-            });
+            actions.push(newComponent.generateStorybook(data));
           }
         }
         if (selectFolder === selectFolder.options.hasFolder) {
