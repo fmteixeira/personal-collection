@@ -106,30 +106,14 @@ module.exports = (plop) => {
 
       // New Component
       if (data.component === component.options.createComponent) {
-        console.log("NEW COMPONENT");
-        // if new folder
-        if (data.selectFolder === selectFolder.options.newFolder) {
-          console.log("NEW COMPONENT - NEW FOLDER");
-          // Folder index
-          actions = newComponent.generateFolderIndex(actions, data);
-          // Component
-          actions = newComponent.generateComponent(actions, data);
-          // Component index
-          actions = newComponent.generateComponentIndex(actions, data);
-          // Storybook
-          actions = newComponent.generateStorybook(actions, data);
-        }
-        if (data.selectFolder === selectFolder.options.hasFolder) {
-          console.log("NEW COMPONENT - HAS FOLDER");
-          // Folder index
-          actions = newComponent.generateFolderIndex(actions, data);
-          // Component
-          actions = newComponent.generateComponent(actions, data);
-          // Component index
-          actions = newComponent.generateComponentIndex(actions, data);
-          // Storybook
-          actions = newComponent.generateStorybook(actions, data);
-        }
+        // Folder index
+        actions = newComponent.generateFolderIndex(actions, data);
+        // Component
+        actions = newComponent.generateComponent(actions, data);
+        // Component index
+        actions = newComponent.generateComponentIndex(actions, data);
+        // Storybook
+        actions = newComponent.generateStorybook(actions, data);
       }
 
       // New SubComponent
