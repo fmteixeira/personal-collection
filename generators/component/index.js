@@ -1,28 +1,5 @@
 const { newComponent } = require("./functions");
-
-const component = {
-  message: "Select an action: ",
-  options: {
-    createComponent: "Create new component",
-    createSubComponent: "Add subcomponent",
-  },
-};
-
-const selectFolder = {
-  message: "Select an option: ",
-  options: {
-    hasFolder: "Add to existing component folder",
-    newFolder: "Create new folder",
-  },
-};
-
-const selectMultipleFolder = {
-  message: "Select folder type: ",
-  options: {
-    singular: "This folder will contain only this component",
-    multiple: "This folder will contain multiple components",
-  },
-};
+const { component, selectFolder, selectMultipleFolder } = require("./options");
 
 module.exports = (plop) => {
   plop.setGenerator("Component Generator", {
@@ -125,28 +102,20 @@ module.exports = (plop) => {
      * location?: string (folder path)
      */
     actions: (data) => {
-      const actions = [];
+      let actions = [];
 
       // New Component
       if (data.component === component.options.createComponent) {
         // if new folder
         if (data.selectFolder === selectFolder.options.newFolder) {
-          const isSingular =
-            data.selectMultipleFolder === selectMultipleFolder.options.singular;
-          const baseFolder = isSingular ? "" : `${data.folderName}/`;
-
           // Folder index
-          if (!isSingular) {
-            actions.push(newComponent.generateFolderIndex(data));
-          }
+          actions = newComponent.generateFolderIndex(actions, data);
           // Component
-          actions.push(newComponent.generateComponent(data));
+          actions = newComponent.generateComponent(actions, data);
           // Component index
-          actions.push(newComponent.generateComponentIndex(data));
+          actions = newComponent.generateComponentIndex(actions, data);
           // Storybook
-          if (data.storybook) {
-            actions.push(newComponent.generateStorybook(data));
-          }
+          actions = newComponent.generateStorybook(actions, data);
         }
         if (selectFolder === selectFolder.options.hasFolder) {
           // actions.push({
