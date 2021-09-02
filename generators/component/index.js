@@ -1,6 +1,10 @@
-const { newComponent } = require("./functions");
-const { component, selectFolder, selectMultipleFolder } = require("./options");
-const { validateName } = require("./validators");
+const { validateName, validateFolder } = require("../utils/validators");
+const { newComponent, newSubComponent } = require("./utils/functions");
+const {
+  component,
+  selectFolder,
+  selectMultipleFolder,
+} = require("./utils/options");
 
 module.exports = (plop) => {
   plop.setGenerator("Component Generator", {
@@ -22,12 +26,15 @@ module.exports = (plop) => {
           component.options.createSubComponent,
         ],
       },
+      // New Component
       {
+        when: (response) => {
+          return response.component === component.options.createComponent;
+        },
         type: "confirm",
         name: "storybook",
         message: "Generate Storybook ?",
       },
-      // New Component
       {
         when: (response) => {
           return response.component === component.options.createComponent;
@@ -70,29 +77,29 @@ module.exports = (plop) => {
         message: "Folder name: ",
         validate: (input) => validateName(input),
       },
+      // New Component -> Has Folder
+      {
+        when: (response) => {
+          return (
+            response.component === component.options.createComponent &&
+            response.selectFolder === selectFolder.options.hasFolder
+          );
+        },
+        type: "input",
+        name: "folderName",
+        message: "Select folder in components (examples: 'Inputs')",
+        validate: (input) => validateName(input),
+      },
       // New Subcomponent
       {
         when: (response) => {
           return response.component === component.options.createSubComponent;
         },
-        type: "confirm",
-        name: "local",
-        message: "Local subcomponent (no export) ?",
-      },
-      // New Component -> Has Folder || New Subcomponent
-      {
-        when: (response) => {
-          return (
-            (response.component === component.options.createComponent &&
-              response.selectFolder === selectFolder.options.hasFolder) ||
-            response.component === component.options.createSubComponent
-          );
-        },
         type: "input",
         name: "folderName",
         message:
-          "Select folder in components (examples: 'TextInput', 'Inputs\\TextInput'): ",
-        validate: (input) => validateName(input),
+          "Select folder in components (examples: 'Container', 'Inputs/TextInput'): ",
+        validate: (input) => validateFolder(input),
       },
     ],
     /**
@@ -103,7 +110,7 @@ module.exports = (plop) => {
      * selectFolder: selectFolder.options (has folder / create new folder)
      * selectMultipleFolder: selectMultipleFolder.options (singular component folder / multiple component folder)
      * folderName: string (folder name)
-     * location?: string (folder path)
+     * nestedFolderName: string (nested folder name)
      */
     actions: (data) => {
       let actions = [];
@@ -122,6 +129,7 @@ module.exports = (plop) => {
 
       // New SubComponent
       if (data.component === component.options.createSubComponent) {
+        actions = newSubComponent.generateComponent(actions, data);
       }
 
       return actions;
