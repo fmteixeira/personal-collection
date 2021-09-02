@@ -85,13 +85,13 @@ module.exports = {
       {
         zones: [
           {
-            target: "./src/components",
-            from: "./src/features/",
-          },
-          {
             target: "./src/features/Landing",
             from: "./src/features",
             except: ["./Landing"],
+          },
+          {
+            target: "./src/components",
+            from: "./src/features/",
           },
         ],
       },

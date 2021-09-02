@@ -1,7 +1,7 @@
-// const componentGenerator = require("./generators/component");
 const componentGenerator = require("./generators/component");
+const featureGenerator = require("./generators/feature");
 
 module.exports = function (plop) {
-  // plop.setGenerator("component", componentGenerator);
   componentGenerator(plop);
+  featureGenerator(plop);
 };

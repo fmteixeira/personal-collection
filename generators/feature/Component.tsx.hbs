@@ -1,0 +1,11 @@
+import React from "react";
+
+export interface {{properCase componentName}}Props {
+  exampleProp: string;
+}
+
+export const {{properCase componentName}} = ({ exampleProp }: {{properCase componentName}}Props): JSX.Element => (
+  <button type="button" className="bg-red-400 font-bold border-2">
+    {exampleProp}
+  </button>
+);
