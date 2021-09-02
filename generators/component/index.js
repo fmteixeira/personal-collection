@@ -86,7 +86,7 @@ module.exports = (plop) => {
           );
         },
         type: "input",
-        name: "location",
+        name: "folderName",
         message:
           "Select folder in components (examples: 'TextInput', 'Inputs\\TextInput'): ",
       },
@@ -106,8 +106,10 @@ module.exports = (plop) => {
 
       // New Component
       if (data.component === component.options.createComponent) {
+        console.log("NEW COMPONENT");
         // if new folder
         if (data.selectFolder === selectFolder.options.newFolder) {
+          console.log("NEW COMPONENT - NEW FOLDER");
           // Folder index
           actions = newComponent.generateFolderIndex(actions, data);
           // Component
@@ -117,15 +119,16 @@ module.exports = (plop) => {
           // Storybook
           actions = newComponent.generateStorybook(actions, data);
         }
-        if (selectFolder === selectFolder.options.hasFolder) {
-          // actions.push({
-          //   type: "modify",
-          //   path: `src/components/${
-          //     data.location ? data.location + "/" : ""
-          //   }{{properCase componentName}}/index.ts`,
-          //   pattern: /(\/\/ IMPORT MODULE FILES)/g,
-          //   templateFile: '$1\nexport * from "./{{camelCase name}}";',
-          // });
+        if (data.selectFolder === selectFolder.options.hasFolder) {
+          console.log("NEW COMPONENT - HAS FOLDER");
+          // Folder index
+          actions = newComponent.generateFolderIndex(actions, data);
+          // Component
+          actions = newComponent.generateComponent(actions, data);
+          // Component index
+          actions = newComponent.generateComponentIndex(actions, data);
+          // Storybook
+          actions = newComponent.generateStorybook(actions, data);
         }
       }
 

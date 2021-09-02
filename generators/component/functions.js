@@ -16,14 +16,29 @@ const newComponent = {
   generateFolderIndex: (actions, data) => {
     const { isSingular } = newComponentFolderData(data);
 
-    const newAction = {
-      type: "add",
-      path: `src/components/${
-        data.location ? data.location + "/" : ""
-      }{{properCase folderName}}/index.ts`,
-      templateFile: `generators/component/index.ts.hbs`,
-    };
-    return isSingular ? actions : [...actions, newAction];
+    if (data.selectFolder === selectFolder.options.newFolder) {
+      const newAction = {
+        type: "add",
+        path: `src/components/${
+          data.location ? data.location + "/" : ""
+        }{{properCase folderName}}/index.ts`,
+        templateFile: `generators/component/index.ts.hbs`,
+      };
+      return isSingular ? actions : [...actions, newAction];
+    }
+    if (data.selectFolder === selectFolder.options.hasFolder) {
+      const newAction = {
+        type: "append",
+        unique: true,
+        path: `src/components/${
+          data.location ? data.location + "/" : ""
+        }{{properCase folderName}}/index.ts`,
+        // pattern: /(\/\/ IMPORT MODULE FILES)/g,
+        pattern: ";",
+        template: 'export * from "./{{properCase componentName}}";',
+      };
+      return [...actions, newAction];
+    }
   },
   generateComponent: (actions, data) => {
     const { baseFolder } = newComponentFolderData(data);
