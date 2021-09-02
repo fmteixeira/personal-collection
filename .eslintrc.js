@@ -62,7 +62,8 @@ module.exports = {
       "error",
       {
         allow: [
-          "@/!(features)/*",
+          // "@/!(features)/*",
+          "@/**/*",
           "**/node_modules/**/*",
           "source-map-support/*",
         ],
@@ -72,10 +73,26 @@ module.exports = {
       "error",
       {
         patterns: [
-          "@/features/**/*",
+          // "@/features/**/*",
           "**/*.module.css",
           "**/*.css",
           "**/*.scss",
+        ],
+      },
+    ],
+    "import/no-restricted-paths": [
+      "error",
+      {
+        zones: [
+          {
+            target: "./src/components",
+            from: "./src/features/",
+          },
+          {
+            target: "./src/features/Landing",
+            from: "./src/features",
+            except: ["./Landing"],
+          },
         ],
       },
     ],
