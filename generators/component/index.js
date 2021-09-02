@@ -127,23 +127,63 @@ module.exports = (plop) => {
 
       // New Component
       if (data.component === component.options.createComponent) {
+        // if new folder
+        if (data.selectFolder === selectFolder.options.newFolder) {
+          const isSingular =
+            data.selectMultipleFolder === selectMultipleFolder.options.singular;
+          const baseFolder = isSingular ? "" : `${data.folderName}/`;
+
+          // Folder index
+          if (!isSingular) {
+            actions.push({
+              type: "add",
+              path: `src/components/${
+                data.location ? data.location + "/" : ""
+              }{{properCase folderName}}/index.ts`,
+              templateFile: `generators/component/index.ts.hbs`,
+            });
+          }
+          // Component
+          actions.push({
+            type: "add",
+            path: `src/components/${
+              data.location ? data.location + "/" : ""
+            }${baseFolder}{{properCase componentName}}/{{properCase componentName}}.tsx`,
+            templateFile: "generators/component/Component.tsx.hbs",
+          });
+          // Component index
+          actions.push({
+            type: "add",
+            path: `src/components/${
+              data.location ? data.location + "/" : ""
+            }${baseFolder}{{properCase componentName}}/index.ts`,
+            templateFile: `generators/component/index.ts.hbs`,
+          });
+          // Storybook
+          if (data.storybook) {
+            actions.push({
+              type: "add",
+              path: `src/components/${
+                data.location ? data.location + "/" : ""
+              }${baseFolder}{{properCase componentName}}/{{properCase componentName}}.stories.tsx`,
+              templateFile: "generators/component/Component.stories.tsx.hbs",
+            });
+          }
+        }
+        if (selectFolder === selectFolder.options.hasFolder) {
+          // actions.push({
+          //   type: "modify",
+          //   path: `src/components/${
+          //     data.location ? data.location + "/" : ""
+          //   }{{properCase componentName}}/index.ts`,
+          //   pattern: /(\/\/ IMPORT MODULE FILES)/g,
+          //   templateFile: '$1\nexport * from "./{{camelCase name}}";',
+          // });
+        }
       }
 
       // New SubComponent
       if (data.component === component.options.createSubComponent) {
-      }
-
-      // Global
-      if (data.storybook) {
-        // TODO: Add all this logic
-        actions.push({
-          type: "add",
-          // path: "src/components/{{folder}}/{{properCase name}}/{{properCase name}}.stories.tsx",
-          path: `src/components/${
-            location ? location + "/" : ""
-          }{{properCase name}}/{{properCase name}}.stories.tsx`,
-          templateFile: "generators/component/Component.stories.tsx.hbs",
-        });
       }
 
       return actions;
