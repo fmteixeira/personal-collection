@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 const validateName = (input) => {
   const regex = /^[a-zA-Z\s]+$/;
   if (!regex.test(input)) {

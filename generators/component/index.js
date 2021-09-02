@@ -5,6 +5,7 @@ const {
   selectFolder,
   selectMultipleFolder,
 } = require("./utils/options");
+const { camelize } = require("../utils/functions");
 
 module.exports = (plop) => {
   plop.setGenerator("Component Generator", {
@@ -15,6 +16,20 @@ module.exports = (plop) => {
         type: "input",
         name: "componentName",
         message: "Component name:",
+        validate: (input) => validateName(input),
+      },
+      {
+        type: "confirm",
+        name: "sharedComponent",
+        message: "Is this component used by multiple features ?",
+      },
+      {
+        when: (response) => {
+          return !response.sharedComponent;
+        },
+        type: "input",
+        name: "featureName",
+        message: "Feature name:",
         validate: (input) => validateName(input),
       },
       {
@@ -105,6 +120,8 @@ module.exports = (plop) => {
     /**
      * Data Params
      * componentName: string (component name)
+     * sharedComponent: boolean (true = shared component, false = feature component)
+     * featureName?: string (name of the feature that the component belongs to)
      * component: component.options (new component / new subcomponent)
      * storybook: boolean (generate storybook)
      * selectFolder: selectFolder.options (has folder / create new folder)
