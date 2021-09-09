@@ -85,6 +85,11 @@ module.exports = {
       {
         zones: [
           {
+            target: "./src/features/NewsArticle",
+            from: "./src/features",
+            except: ["./NewsArticle"],
+          },
+          {
             target: "./src/features/Landing",
             from: "./src/features",
             except: ["./Landing"],

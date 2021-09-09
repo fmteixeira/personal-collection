@@ -4,8 +4,10 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/types/*": ["types/*"],
+      "@/content/*": ["content/*"],
       "@/config/*": ["config/*"],
-      "@/features/*": ["features/*"]
+      "@/features/*": ["features/*"],
+      "@/routes": ["routes"]
     }
   },
   "include": ["./**/*.ts", "./**/*.tsx"]
