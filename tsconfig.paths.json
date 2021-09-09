@@ -7,6 +7,6 @@
       "@/config/*": ["config/*"],
       "@/features/*": ["features/*"]
     }
-  }
-  // "include": ["./**/*.ts", "./**/*.tsx"]
+  },
+  "include": ["./**/*.ts", "./**/*.tsx"]
 }
