@@ -1,4 +1,5 @@
 const path = require("path");
+const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
   stories: [
@@ -12,4 +13,12 @@ module.exports = {
     "@storybook/preset-create-react-app",
     "storybook-dark-mode",
   ],
+  // Use tsconfig webpack config (for absolute paths)
+  webpackFinal: async (config) => {
+    [].push.apply(config.resolve.plugins, [
+      new TsconfigPathsPlugin({ extensions: config.resolve.extensions }),
+    ]);
+
+    return config;
+  },
 };
