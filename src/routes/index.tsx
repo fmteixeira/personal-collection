@@ -1,16 +1,14 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 import { NewsArticle } from "@/features/NewsArticle";
 
-export const AppRoutes = (): JSX.Element => {
-  const test = 123;
-
-  return (
+export const AppRoutes = (): JSX.Element => (
+  <Router>
     <Switch>
-      <Route path="/about">
+      <Route path="/news/:slug">
         <NewsArticle exampleProp="News Article" />
       </Route>
     </Switch>
-  );
-};
+  </Router>
+);

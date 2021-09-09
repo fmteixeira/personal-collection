@@ -13,9 +13,9 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<NewsArticleProps> = ({ exampleProp }: NewsArticleProps) => (
-  <NewsArticle exampleProp={exampleProp} />
-);
+const Template: Story<NewsArticleProps> = ({
+  exampleProp,
+}: NewsArticleProps) => <NewsArticle exampleProp={exampleProp} />;
 
 export const Default = Template.bind({});
 Default.args = {};
