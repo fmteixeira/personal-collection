@@ -42,6 +42,7 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "react/prop-types": "off",
+    "prettier/prettier": ["error", {}, { usePrettierrc: true }],
     "import/order": [
       "error",
       {
@@ -63,12 +64,13 @@ module.exports = {
       {
         allow: [
           // "@/!(features)/*",
-          "@/**/*",
+          // "@/**/*",
           "**/node_modules/**/*",
           "source-map-support/*",
         ],
       },
     ],
+    "import/no-default-export": "error",
     "no-restricted-imports": [
       "error",
       {

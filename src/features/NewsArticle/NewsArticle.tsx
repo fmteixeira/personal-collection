@@ -1,7 +1,8 @@
 import React from "react";
 import { useParams } from "react-router";
 
-import news from "@/content/news";
+import { news } from "@/content/news/";
+import { useContent } from "@/hooks";
 
 export interface NewsArticleProps {
   exampleProp: string;
@@ -15,11 +16,11 @@ export const NewsArticle = ({ exampleProp }: NewsArticleProps): JSX.Element => {
   // Params
   const { slug } = useParams<Params>();
 
-  const newsArticle = news.find((item) => item.slug === slug);
+  const { contentItem } = useContent(news, slug ?? "");
 
   return (
     <button type="button" className="bg-red-400 font-bold border-2 p-4">
-      {newsArticle?.title ?? "404"}
+      {contentItem?.title ?? "404"}
     </button>
   );
 };

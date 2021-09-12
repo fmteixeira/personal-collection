@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Landing } from "@/features/Landing";
 import { AppRoutes } from "@/routes";
 
 // eslint-disable-next-line no-restricted-imports
@@ -10,4 +9,5 @@ function App(): JSX.Element {
   return <AppRoutes />;
 }
 
+// eslint-disable-next-line import/no-default-export
 export default App;
