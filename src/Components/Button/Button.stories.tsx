@@ -3,12 +3,15 @@ import React from "react";
 
 import { Button, Props } from "@/components/Button";
 
-export default {
-  title: "Button",
+const meta: Meta = {
+  title: "Components/Button",
   component: Button,
   decorators: [],
   argTypes: {},
-} as Meta;
+};
+
+// eslint-disable-next-line import/no-default-export
+export default meta;
 
 // Component Story
 const Template: Story<Props> = ({ exampleProp }: Props) => (

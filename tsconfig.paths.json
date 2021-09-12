@@ -8,7 +8,8 @@
       "@/config/*": ["config/*"],
       "@/features/*": ["features/*"],
       "@/hooks": ["hooks"],
-      "@/routes": ["routes"]
+      "@/routes": ["routes"],
+      "@/routes/paths": ["routes/paths"]
     }
   },
   "include": ["./**/*.ts", "./**/*.tsx"]

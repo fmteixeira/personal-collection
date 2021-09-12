@@ -8,7 +8,7 @@ export interface Props {
   name: string;
 }
 
-const Container = ({ name }: Props): JSX.Element => {
+export const Container = ({ name }: Props): JSX.Element => {
   const person: Person = {
     name,
   };
@@ -21,5 +21,3 @@ const Container = ({ name }: Props): JSX.Element => {
     </div>
   );
 };
-
-export default Container;

@@ -11,6 +11,7 @@ const meta: Meta = {
   },
 };
 
+// eslint-disable-next-line import/no-default-export
 export default meta;
 
 const Template: Story<InputFileProps> = ({ exampleProp }: InputFileProps) => (

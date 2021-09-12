@@ -3,6 +3,7 @@ import primeiroProjeto from "./primeiroProjeto.json";
 
 import { NewsArticle } from "@/types/interfaces";
 
-export const news: NewsArticle[] = [inauguracao, primeiroProjeto];
-
-// export news;
+export const news: NewsArticle[] = [
+  inauguracao as NewsArticle,
+  primeiroProjeto as NewsArticle,
+];
