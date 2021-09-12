@@ -9,4 +9,5 @@ function App(): JSX.Element {
   return <AppRoutes />;
 }
 
+// eslint-disable-next-line import/no-default-export
 export default App;

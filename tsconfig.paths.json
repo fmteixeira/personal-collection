@@ -7,6 +7,7 @@
       "@/content/*": ["content/*"],
       "@/config/*": ["config/*"],
       "@/features/*": ["features/*"],
+      "@/hooks": ["hooks"],
       "@/routes": ["routes"]
     }
   },
